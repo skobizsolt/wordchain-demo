@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.skobrakzsolt.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,6 +35,15 @@ class WordChainServiceTest {
         final var source = List.of("alma", "körte", "barack");
         // when
         final List<String> result = wordChainService.getChainedWords(source);
+        // then
+        assertTrue(CollectionUtils.isEmpty(result));
+    }
+
+    @Test
+    void test_getChainedWords_emptyList() {
+        // given
+        // when
+        final List<String> result = wordChainService.getChainedWords(Collections.emptyList());
         // then
         assertTrue(CollectionUtils.isEmpty(result));
     }

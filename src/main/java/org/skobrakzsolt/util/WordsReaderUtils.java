@@ -22,9 +22,8 @@ public final class WordsReaderUtils {
      *
      * @return {@link List} of strings.
      */
-    public static List<String> readFromConsole() {
-        final var scanner = new Scanner(System.in);
-
+    public static List<String> readFromConsole(Scanner scanner) {
+        scanner.nextLine();
         System.out.print("Input: ");
         return getNaturallyOrderedWords(scanner.nextLine());
     }
@@ -36,7 +35,9 @@ public final class WordsReaderUtils {
      */
     public static List<String> readFromFile() {
         try {
-            return getNaturallyOrderedWords(Files.readString(Path.of(FILE_PATH)));
+            List<String> words = getNaturallyOrderedWords(Files.readString(Path.of(FILE_PATH)));
+            System.out.printf("Input: %s%n", String.join(" ", words));
+            return words;
         } catch (IOException e) {
             System.out.printf("Error during reading file: %s%n", e.getMessage());
         }

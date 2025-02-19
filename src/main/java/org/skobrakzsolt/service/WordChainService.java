@@ -1,5 +1,6 @@
 package org.skobrakzsolt.service;
 
+import org.skobrakzsolt.util.CollectionUtils;
 import org.skobrakzsolt.util.CriteriaUtils;
 
 import java.util.*;
@@ -11,6 +12,10 @@ import java.util.stream.Stream;
 public class WordChainService {
 
     public List<String> getChainedWords(List<String> words) {
+        if (CollectionUtils.isEmpty(words)) {
+            return Collections.emptyList();
+        }
+
         for (String word : words) {
             List<String> currentChainState = new ArrayList<>();
             Set<String> wordsUsed = new HashSet<>();
